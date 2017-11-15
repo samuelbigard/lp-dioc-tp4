@@ -16,6 +16,10 @@ class UserType extends AbstractType
         // FIXME: Ajouter les champs firstname, lastname, email, birthday
 
         $builder
+            ->add("firstname")
+            ->add("lastname")
+            ->add("email")
+            ->add("birthday")
             ->add('plainPassword', RepeatedType::class, [
                 'mapped'         => false,
                 'type'           => PasswordType::class,

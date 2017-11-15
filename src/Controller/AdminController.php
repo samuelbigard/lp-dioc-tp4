@@ -40,6 +40,6 @@ class AdminController extends Controller
         $em->remove($user);
 
         $em->flush();
-        $this->redirectToRoute("admin_dashboard");
+        return $this->redirectToRoute("admin_dashboard");
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+
+use App\Entity\User;
+use App\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,5 +40,17 @@ class SecurityController extends Controller
     {
         // FIXME: Instancier le formulaire et à la soumission enregistrer le user.
         // La vue à rendre : Security/register.html.twig
+        $user = new User();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->render("Security/register.html.twig", array('form'=>$form));
     }
 }
