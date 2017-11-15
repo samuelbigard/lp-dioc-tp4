@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -25,6 +26,6 @@ class UserType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        // FIXME: ajouter la configuration du form
+        $resolver->setDefaults(array('data_class' => User::class));
     }
 }
